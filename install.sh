@@ -10,6 +10,6 @@ fi
 
 apt-get update && apt-get install termit
 chmod +x main.py
-cp main.py ratloader && mv ratcreator /usr/bin
+cp main.py ratloader && mv ratloader /usr/bin
 echo ""
 echo -e "All installations completed, to run RatCreator, execute ${BLUE}main.py${WHITE}, or type ${BLUE}ratloader${WHITE}"
