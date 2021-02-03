@@ -17,4 +17,4 @@ Run the following command as superuser:
 :~# bash install.sh
 
 # End
-Then, ratcreator will be able to work, to run it, execute the file 'main.py', or the command 'ratloader'
+Then, ratloader will be able to work, to run it, execute the file 'main.py', or the command 'ratloader'
