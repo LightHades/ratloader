@@ -1,6 +1,6 @@
 # ratloader
 
-This is a Pentes tool which automates the process of payloads creations.
+This is a Pentest tool which automates the process of payloads creations.
 There are included the following formats:
 
 Android (apk)
